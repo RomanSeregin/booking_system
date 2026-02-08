@@ -1,0 +1,12 @@
+<h1>Мої бронювання</h1>
+<ul>
+  {% for booking in bookings %}
+    <li>
+      {{ booking.room.name }} |
+      {{ booking.start_date }} – {{ booking.end_date }} |
+      {{ booking.get_status_display }}
+    </li>
+  {% empty %}
+    <li>Бронювань немає</li>
+  {% endfor %}
+</ul>

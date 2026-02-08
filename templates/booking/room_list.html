@@ -1,0 +1,13 @@
+<h1>Список кімнат</h1>
+
+<ul>
+  {% for room in rooms %}
+    <li>
+      <strong>{{ room.name }}</strong>
+      ({{ room.get_room_type_display }}) –
+      {{ room.capacity }} місць
+    </li>
+  {% endfor %}
+</ul>
+
+<a href="/booking/">Забронювати</a>
