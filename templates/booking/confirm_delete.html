@@ -1,0 +1,13 @@
+{% extends 'booking/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-4">
+        <h3>Ви впевнені, що хочете видалити бронювання: {{ booking.room.name }}?</h3>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Видалити</button>
+            <a href="{% url 'my_bookings' %}" class="btn btn-secondary">Скасувати</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

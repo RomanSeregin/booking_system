@@ -4,16 +4,19 @@ from django.contrib.auth.models import User
 
 class Room(models.Model):
     ROOM_TYPES = [
+        ('auditorium', 'Аудиторія'),
         ('conference', 'Конференц-зал'),
-        ('classroom', 'Аудиторія'),
-        ('workspace', 'Робоче місце'),
+        ('lab', 'Лабораторія'),
+        ('other', 'Інше'),
     ]
 
     name = models.CharField(max_length=100)
-    room_type = models.CharField(max_length=20, choices=ROOM_TYPES)
+    type = models.CharField(max_length=20, choices=ROOM_TYPES, default='other')
     capacity = models.PositiveIntegerField()
-    price_per_hour = models.DecimalField(max_digits=8, decimal_places=2)
-    description = models.TextField(blank=True)
+    price_per_day = models.DecimalField(max_digits=8, decimal_places=2, default=1000)  # дефолтная цена
+    features = models.TextField(
+        verbose_name="Особливості (проєктор, Wi-Fi, дошка тощо)"
+    )
 
     def __str__(self):
         return self.name

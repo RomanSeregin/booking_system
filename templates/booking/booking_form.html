@@ -1,6 +1,80 @@
-<h1>Нове бронювання</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Забронювати</button>
-</form>
+{% extends 'booking/base.html' %}
+
+{% block title %}Забронювати кімнату{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Бронювання кімнати</h2>
+
+    <form method="post" id="booking-form">
+        {% csrf_token %}
+
+        <!-- Имя пользователя -->
+        <div class="mb-3">
+            <label for="id_name" class="form-label">Ім'я</label>
+            <input type="text" name="name" class="form-control" id="id_name" value="{{ form.name.value|default:request.user.username }}" required>
+        </div>
+
+        <!-- Выбор комнаты -->
+        <div class="mb-3">
+            <label for="id_room" class="form-label">Виберіть кімнату</label>
+            <select name="room" id="id_room" class="form-select" required>
+                {% for room in rooms %}
+                    <option value="{{ room.id }}" data-price="{{ room.price_per_day }}">
+                        {{ room.name }} 
+                        ({{ room.get_type_display }} | Місткість: {{ room.capacity }} | Ціна: {{ room.price_per_day }} грн/день | {{ room.features }})
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Дата и время начала -->
+        <div class="mb-3">
+            <label for="id_start_date" class="form-label">Дата та час початку</label>
+            <input type="datetime-local" name="start_date" class="form-control" id="id_start_date" required>
+        </div>
+
+        <!-- Дата и время окончания -->
+        <div class="mb-3">
+            <label for="id_end_date" class="form-label">Дата та час завершення</label>
+            <input type="datetime-local" name="end_date" class="form-control" id="id_end_date" required>
+        </div>
+
+        <!-- Общая цена -->
+        <div class="mb-3">
+            <label class="form-label">Загальна ціна: <span id="total-price">0</span> грн</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Забронювати</button>
+    </form>
+</div>
+
+<script>
+    function calculatePrice() {
+        const roomSelect = document.getElementById('id_room');
+        const startInput = document.getElementById('id_start_date');
+        const endInput = document.getElementById('id_end_date');
+        const priceDisplay = document.getElementById('total-price');
+
+        const selectedOption = roomSelect.options[roomSelect.selectedIndex];
+        const pricePerDay = parseFloat(selectedOption.dataset.price);
+
+        const startDate = new Date(startInput.value);
+        const endDate = new Date(endInput.value);
+
+        if (startDate && endDate && endDate >= startDate) {
+            const diffTime = endDate - startDate;
+            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // считаем полные сутки
+            diffDays = diffDays === 0 ? 1 : diffDays; // минимум 1 день
+            const total = diffDays * pricePerDay;
+            priceDisplay.textContent = total.toFixed(2);
+        } else {
+            priceDisplay.textContent = '0';
+        }
+    }
+
+    document.getElementById('id_room').addEventListener('change', calculatePrice);
+    document.getElementById('id_start_date').addEventListener('change', calculatePrice);
+    document.getElementById('id_end_date').addEventListener('change', calculatePrice);
+</script>
+{% endblock %}

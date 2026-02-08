@@ -27,7 +27,7 @@ class BookingForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['room'].queryset = Room.objects.order_by('room_type', 'name')
+        self.fields['room'].queryset = Room.objects.order_by('type', 'name')
 
     def clean(self):
         cleaned_data = super().clean()
