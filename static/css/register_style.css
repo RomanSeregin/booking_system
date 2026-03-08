@@ -1,0 +1,135 @@
+/* ===================================
+   PREMIUM DARK + GOLD GLOW STYLE FOR REGISTER
+=================================== */
+
+:root {
+    --gold: #d4af37;
+    --gold-soft: rgba(212,175,55,.35);
+    --gold-glow: rgba(212,175,55,.5);
+    --dark-bg: #0b0b0f;
+    --dark-card: #141419;
+    --text-main: #f5f5f5;
+    --text-muted: #b5b5b5;
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== REGISTER CARD ===== */
+.register-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--dark-card);
+    border: 1px solid rgba(212,175,55,.15);
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 20px 50px rgba(0,0,0,.3);
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.8s ease forwards;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Золотая линия сверху карточки */
+.register-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: var(--gold);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Glow при наведении на карточку */
+.register-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 35px var(--gold-soft);
+}
+
+/* ===== HEADINGS ===== */
+h1 {
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 5px var(--gold-glow);
+}
+
+/* ===== FORM ELEMENTS ===== */
+input, select, textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(212,175,55,.25);
+    background: #1a1a1f;
+    color: var(--text-main);
+    outline: none;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 10px var(--gold-soft);
+}
+
+/* ===== BUTTON ===== */
+button.btn-primary {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 999px;
+    font-weight: 600;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    transition: all 0.3s ease, box-shadow 0.4s ease;
+}
+
+button.btn-primary:hover {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 0 20px var(--gold-glow), 0 0 35px var(--gold-soft);
+    transform: translateY(-2px);
+}
+
+/* ===== BOTTOM TEXT ===== */
+.bottom-text {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-muted);
+}
+
+.bottom-text a {
+    color: var(--gold);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.bottom-text a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 6px var(--gold-soft);
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

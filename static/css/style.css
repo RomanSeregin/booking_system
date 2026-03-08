@@ -1,0 +1,175 @@
+/* ===================================
+   PREMIUM DARK + GOLD STYLE
+=================================== */
+
+:root {
+    --gold: #d4af37;
+    --gold-soft: rgba(212,175,55,.35);
+    --dark-bg: #0b0b0f;
+    --dark-card: #141419;
+    --text-main: #f5f5f5;
+    --text-muted: #b5b5b5;
+}
+
+/* ===== BODY ===== */
+
+body {
+    font-family: 'Inter', sans-serif;
+    padding-top: 90px;
+    background: var(--dark-bg);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+    background: #000 !important;
+    border-bottom: 1px solid var(--gold);
+}
+
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    color: var(--text-main) !important;
+    transition: .3s;
+}
+
+.nav-link:hover {
+    color: var(--gold) !important;
+}
+
+/* ===== CARDS ===== */
+
+.card {
+    background: var(--dark-card);
+    border: 1px solid rgba(212,175,55,.15);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: .3s ease;
+}
+
+/* Золотая линия сверху карточки */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: var(--gold);
+}
+
+/* Лёгкое свечение при наведении */
+.card:hover {
+    box-shadow: 0 0 25px var(--gold-soft);
+    transform: translateY(-4px);
+}
+
+/* ===== TEXT ===== */
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* ===== BUTTONS ===== */
+
+.btn-primary {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 4px;
+    padding: 10px 26px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    transition: .3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 0 20px var(--gold-soft);
+}
+
+.btn-outline-secondary {
+    border: 1px solid rgba(255,255,255,.2);
+    color: var(--text-main);
+    border-radius: 4px;
+}
+
+.btn-outline-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* ===== CALENDAR ===== */
+
+#calendar {
+    border-top: 1px solid var(--gold);
+    padding-top: 20px;
+}
+
+.fc {
+    background: transparent;
+    color: var(--text-main);
+}
+
+.fc-toolbar-title {
+    color: var(--gold);
+    font-weight: 500;
+}
+
+/* ===== HERO TITLE ===== */
+
+h1 {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* ===== THEME BUTTON ===== */
+
+#themeToggle {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 4px;
+}
+
+#themeToggle:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+/* ===== SUBTLE FADE ===== */
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp .8s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== FIX TEXT COLORS ===== */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-main);
+}
+
+h1 {
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.lead {
+    color: var(--text-muted) !important;
+}

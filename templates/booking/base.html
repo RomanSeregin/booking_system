@@ -8,81 +8,147 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            min-height: 100vh;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #fff;
+        :root {
+            --gold: #d4af37;
+            --gold-soft: rgba(212,175,55,.35);
+            --dark-bg: #0b0b0f;
+            --dark-surface: #141419;
+            --text-main: #f5f5f5;
+            --text-muted: #b5b5b5;
         }
 
-        /* Navbar */
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-main);
+        }
+
+        /* ================= NAVBAR ================= */
+
         .navbar {
-            backdrop-filter: blur(12px);
-            background: rgba(0, 0, 0, 0.55) !important;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            background: rgba(15,15,20,0.95) !important;
+            border-bottom: 1px solid rgba(212,175,55,.2);
+            backdrop-filter: blur(10px);
         }
 
         .navbar-brand {
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            color: var(--gold) !important;
+        }
+
+        .navbar-brand:hover {
+            text-shadow: 0 0 8px var(--gold-soft);
         }
 
         .nav-link {
-            color: #ddd !important;
-            transition: 0.3s;
+            color: var(--text-muted) !important;
+            transition: all .3s ease;
         }
 
         .nav-link:hover {
-            color: #fff !important;
-            text-shadow: 0 0 6px rgba(255,255,255,0.4);
+            color: var(--gold) !important;
+            text-shadow: 0 0 6px var(--gold-soft);
         }
+
+        /* ================= CONTENT ================= */
 
         .content-wrapper {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(14px);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
-            animation: fadeIn 0.6s ease;
+            background: var(--dark-surface);
+            border-radius: 18px;
+            padding: 40px;
+            border: 1px solid rgba(212,175,55,.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,.4);
+            animation: fadeUp .6s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Золотая линия сверху */
+        .content-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold);
         }
+
+        .content-wrapper:hover {
+            box-shadow: 0 0 35px var(--gold-soft);
+            transform: translateY(-2px);
+            transition: .3s ease;
+        }
+
+        /* ================= LINKS ================= */
 
         a {
-            color: #00c6ff;
+            color: var(--gold);
             text-decoration: none;
+            transition: .3s ease;
         }
 
         a:hover {
-            text-decoration: underline;
+            text-shadow: 0 0 6px var(--gold-soft);
         }
 
+        /* ================= BUTTONS ================= */
+
         .btn-primary {
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-            border: none;
-            border-radius: 30px;
-            padding: 10px 26px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 999px;
+            padding: 8px 24px;
             font-weight: 500;
-            transition: 0.3s;
+            transition: all .3s ease;
         }
 
         .btn-primary:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 20px var(--gold-soft);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,114,255,0.6);
         }
+
+        .btn-outline-light {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-outline-light:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 15px var(--gold-soft);
+        }
+
+        /* ================= ANIMATION ================= */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">🏨 Система бронювання</a>
+        <a class="navbar-brand" href="{% url 'home' %}">
+            🏨 Система бронювання
+        </a>
 
         <ul class="navbar-nav ms-auto align-items-center">
             {% if user.is_authenticated %}

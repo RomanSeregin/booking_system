@@ -1,0 +1,74 @@
+/* ===== BOOKING FORM CARD ===== */
+.booking-card {
+    background: #141419;
+    border: 1px solid rgba(212,175,55,0.35);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    padding: 30px;
+    max-width: 700px;
+    margin: 0 auto;
+    animation: fadeUp 0.8s forwards;
+}
+
+/* Heading */
+.booking-card h2 {
+    color: #d4af37;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 5px rgba(212,175,55,0.5);
+}
+
+/* Form fields */
+.booking-card input,
+.booking-card select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(212,175,55,0.3);
+    background: #1b1b2a;
+    color: #f5f5f5;
+    transition: 0.3s;
+}
+
+.booking-card input:focus,
+.booking-card select:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 10px rgba(212,175,55,0.4);
+    outline: none;
+}
+
+/* Labels */
+.booking-card label {
+    font-weight: 500;
+    color: #f5f5f5;
+}
+
+/* Total price */
+#total-price {
+    font-weight: 600;
+    color: #d4af37;
+}
+
+/* Submit button */
+.booking-card .btn-primary {
+    width: 100%;
+    padding: 14px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #d4af37, #b08d35);
+    border: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.booking-card .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(212,175,55,0.6);
+}
+
+/* Fade animation */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
